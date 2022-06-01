@@ -1,8 +1,7 @@
-import common
-from bot.entity import entity
+from minibots import entity
 import json
 
-class repository(entity):
+class ghrepository(entity):
     
     name: str
     description: str

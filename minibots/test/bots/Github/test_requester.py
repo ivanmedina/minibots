@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import patch
-from bots.Github.requester import requestsGithub
-from test.bots.Github import common
-from bots.Github.githubrepository import GithubRepository
-from bot.IRepository import IBot
+from minibots import requestsGithub
+import common
+from minibots import GithubRepository
+from minibots import IBot
 
 class TestGithubRepository(unittest.TestCase):
     
@@ -11,7 +11,7 @@ class TestGithubRepository(unittest.TestCase):
     username="ivanmedina"
 
     def test_requester(self):
-        with patch('bots.Github.githubrepository.requests.get') as mock_get:
+        with patch('minibots.bots.Github.githubrepository.requests.get') as mock_get:
             mock_get.return_value.status_code=200
             repo = GithubRepository()
             requester = requestsGithub( repo, self.resource )
@@ -21,7 +21,7 @@ class TestGithubRepository(unittest.TestCase):
         self.assertTrue(disc)
 
     def test_requestUser(self):
-        with patch('bots.Github.githubrepository.requests.get') as mock_get:
+        with patch('minibots.bots.Github.githubrepository.requests.get') as mock_get:
             mock_get.return_value.status_code=200
             repo = GithubRepository()
             requester = requestsGithub( repo, self.resource )
@@ -31,7 +31,7 @@ class TestGithubRepository(unittest.TestCase):
         self.assertTrue(disc)
 
     def test_requestFollowers(self):
-        with patch('bots.Github.githubrepository.requests.get') as mock_get:
+        with patch('minibots.bots.Github.githubrepository.requests.get') as mock_get:
             mock_get.return_value.status_code=200
             repo = GithubRepository()
             requester = requestsGithub( repo, self.resource )
@@ -41,7 +41,7 @@ class TestGithubRepository(unittest.TestCase):
         self.assertTrue(disc)
 
     def test_requestFollows(self):
-        with patch('bots.Github.githubrepository.requests.get') as mock_get:
+        with patch('minibots.bots.Github.githubrepository.requests.get') as mock_get:
             mock_get.return_value.status_code=200
             repo = GithubRepository()
             requester = requestsGithub( repo, self.resource )
@@ -51,7 +51,7 @@ class TestGithubRepository(unittest.TestCase):
         self.assertTrue(disc)
 
     def test_requestRepos(self):
-        with patch('bots.Github.githubrepository.requests.get') as mock_get:
+        with patch('minibots.bots.Github.githubrepository.requests.get') as mock_get:
             mock_get.return_value.status_code=200
             repo = GithubRepository()
             requester = requestsGithub( repo, self.resource )
