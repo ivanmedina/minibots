@@ -1,7 +1,7 @@
 from requests import request, Response
-from bots.Github import common
+import common
 import requests
-from bot.IRepository import IBot
+from minibots import IBot
 
 class GithubRepository(IBot):
 

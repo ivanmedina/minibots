@@ -1,9 +1,9 @@
 from requests import request, Response
 import common
-from bot.bot import Bot
-from bots.Github.user import user
-from bots.Github.repository import repository
-from helpers import *
+from minibots import Bot
+from minibots import ghuser
+from minibots import ghrepository
+from minibots.bots.Github.ghhelpers import *
 
 class GithubBot(Bot):
     
@@ -11,7 +11,7 @@ class GithubBot(Bot):
         Bot.__init__( self, resource, auth)
         self.requester = requester
 
-    def getUser( self, username )->user:
+    def getUser( self, username )->ghuser:
         response=self.requester.requestUser( username )
         usuario=requestToGHUser( response )
         return usuario
@@ -26,7 +26,7 @@ class GithubBot(Bot):
         followers = requestToArray( 'login', response )
         return followers 
 
-    def getUserRepos( self, username )->list[repository]:
+    def getUserRepos( self, username )->list[ghrepository]:
         response = self.requester.requestUserRepos( username )
         repos = requestToRepos( response )
         return repos

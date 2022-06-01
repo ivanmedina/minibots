@@ -1,6 +1,6 @@
 import unittest
-from test.bot import common
-from bot.bot import Bot
+import common
+from minibots import Bot
 
 class TestBot(unittest.TestCase):
     

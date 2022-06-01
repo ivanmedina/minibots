@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
-from bots.Github import common 
-from bots.Github.githubrepository import GithubRepository
+import common 
+from minibots import GithubRepository
 
 class TestGithubRepository(unittest.TestCase):
 
@@ -9,7 +9,7 @@ class TestGithubRepository(unittest.TestCase):
 
     def test_bconnect(self):
 
-        with patch('bots.Github.githubrepository.requests.get') as mock_get:
+        with patch('minibots.bots.Github.githubrepository.requests.get') as mock_get:
             mock_get.return_value.status_code=200
             obj = GithubRepository()
             response = obj.bconnect(self.resource)
@@ -17,7 +17,7 @@ class TestGithubRepository(unittest.TestCase):
 
     def test_disconnect(self):
 
-        with patch('bots.Github.githubrepository.requests.Response') as mock_response:
+        with patch('minibots.bots.Github.githubrepository.requests.Response') as mock_response:
             mock_response.return_value.close=None
             obj = GithubRepository()
             status = obj.disconnect(mock_response)
@@ -25,7 +25,7 @@ class TestGithubRepository(unittest.TestCase):
 
     def test_get(self):
 
-        with patch('bots.Github.githubrepository.requests.get') as mock_get:
+        with patch('minibots.bots.Github.githubrepository.requests.get') as mock_get:
             mock_get.return_value.status_code=200
             obj = GithubRepository()
             response = obj.bconnect(self.resource)
