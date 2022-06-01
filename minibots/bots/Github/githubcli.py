@@ -1,8 +1,8 @@
 import sys
 from githubbot import GithubBot
 from githubrepository import GithubRepository
-from requester import requestsGithub
-from helpers import *
+from minibots import requestsGithub
+from ghhelpers import *
 
 resource="https://api.github.com"
 auth={}

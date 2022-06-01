@@ -1,20 +1,20 @@
 from requests import Response
 from tabulate import tabulate
-from bots.Github.repository import repository
-from bots.Github.user import user
+from minibots import ghrepository
+from minibots import ghuser
 
 reposHeaders=[ 'id', 'name', 'description', 'url', 'size', 'clone_url' ]
 
-def requestToGHUser (resp:Response)->user:
+def requestToGHUser (resp:Response)->ghuser:
     if resp.status_code == 200:
         _user = resp.json()
-        return user( _user['id'], _user['login'], _user['html_url'], _user['avatar_url'] )
-    return user( 0,'','','' )
+        return ghuser( _user['id'], _user['login'], _user['html_url'], _user['avatar_url'] )
+    return ghuser( 0,'','','' )
 
-def requestToRepos (resp:Response)->list[repository]:
+def requestToRepos (resp:Response)->list[ghrepository]:
     if resp.status_code == 200:
         _repos = resp.json()
-        return [ repository( _r['id'], _r['name'], _r['description'], _r['url'], _r['size'], _r['clone_url']) for _r in _repos ]
+        return [ ghrepository( _r['id'], _r['name'], _r['description'], _r['url'], _r['size'], _r['clone_url']) for _r in _repos ]
     return []
 
 def requestToArray ( key:str, resp:Response )->list[str]:
@@ -23,7 +23,7 @@ def requestToArray ( key:str, resp:Response )->list[str]:
         return [ x[key]  for x  in _follows ]
     return []
 
-def arrayReposToArrayDicts(repos:list[repository])->list[dict]:
+def arrayReposToArrayDicts(repos:list[ghrepository])->list[dict]:
     return [ _r.__dict__ for _r in repos ]
 
 def tableRepos(repos:list[dict])->str:
